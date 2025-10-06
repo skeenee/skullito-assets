@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKULLITOS Generator</title>
+
+  <!-- p5.js core -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+
+  <!-- Optional: p5.dom.js (for createDiv, createSlider, etc.) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.dom.min.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a0a;
+      color: white;
+      font-family: monospace;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      z-index: 1000;
+      color: #ccc;
+      font-family: monospace;
+      font-size: 18px;
+      transition: opacity 0.5s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loading-screen">Loading SKULLITOS assets from Arweave...</div>
+
+  <!-- Load your global asset library first -->
+  <script src="SKULLITOS_assetLibrary.js"></script>
+
+  <!-- Then load your main sketch logic -->
+  <script src="SKULLITOS_external_loading.js"></script>
+
+  <script>
+    // Wait until p5 fully initializes, then hide loading overlay
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loading-screen");
+      if (loader) {
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          setTimeout(() => loader.remove(), 500);
+        }, 800);
+      }
+    });
+  </script>
+</body>
+</html>
